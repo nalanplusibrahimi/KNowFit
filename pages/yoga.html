@@ -7,6 +7,7 @@
     <meta name="description" content="Yoga Grundlagen: Atmung, Haltung, einfache Posen und eine kurze Routine für Anfänger." />
     <link rel="stylesheet" href="../css/styles.css" />
 </head>
+
 <body>
     <header id="site-header"></header>
 
@@ -32,7 +33,74 @@
                 <li>Vorbeuge – 30 Sekunden</li>
             </ol>
 
-            <p class="small">Tipp: Wenn du Videos nutzt, bette eigene Clips ein und ergänze sie immer mit Text.</p>
+            <p class="small">
+                Tipp: Wenn du Videos nutzt, kombiniere sie immer mit Text (was genau soll man beachten? woran merkt man, dass es passt?).
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Bild & Video (mit Geschwindigkeitswahl)</h2>
+            <p class="small">
+                Das ist ein Beispiel, wie ich Inhalte aufbaue: Erst eine kurze Erklärung, dann Visuals (Bild/Video) und am Ende klare Anfänger-Tipps.
+            </p>
+
+            <div class="media-grid">
+                <!-- Bild (Unsplash-Datei lokal im Projekt) -->
+                <div>
+                    <img src="../assets/images/alex-shaw-yoga.jpg"
+                         alt="Yoga Beispielhaltung – kontrollierte Dehnung und stabile Position">
+                    <p class="small" style="margin-top:10px;">
+                        Bild: lizenzfreies Stockfoto (Unsplash). Optionaler Credit im Text/Impressum: Alex Shaw.
+                    </p>
+                </div>
+
+                <!-- Video (Pexels-Datei lokal im Projekt) -->
+                <div>
+                    <video id="yogaVideo" class="video" controls playsinline preload="metadata">
+                        <source src="../assets/videos/pexels-headstand-4536552.mp4" type="video/mp4">
+                        Dein Browser unterstützt dieses Video nicht.
+                    </video>
+
+                    <div class="controls-row">
+                        <label for="speedSelect">Geschwindigkeit:</label>
+                        <select id="speedSelect">
+                            <option value="0.5">0.5x</option>
+                            <option value="0.75">0.75x</option>
+                            <option value="1" selected>1x</option>
+                            <option value="1.25">1.25x</option>
+                            <option value="1.5">1.5x</option>
+                        </select>
+                        <span id="speedInfo" class="small">Aktuell: 1x</span>
+                    </div>
+
+                    <p class="small" style="margin-top:10px;">
+                        Übung im Video: Kopfstand / Headstand (Sirsasana). Hauptarbeit machen Schultern/Arme und der Core zur Stabilisierung.
+                        (Stockvideo von Pexels, Titel: „Woman Doing Headstand“, Creator: Vlada Karpovich.)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Kopfstand (Sirsasana) – kurz erklärt</h2>
+            <p>
+                Beim Kopfstand geht’s weniger darum, „einfach kopfüber zu sein“, sondern um Kontrolle.
+                Was ich daran spannend finde: Du brauchst stabile Schultern und einen aktiven Core, sonst kippt man entweder ins Hohlkreuz
+                oder lädt zu viel Druck in den Nacken. Genau deshalb würde ich das als Anfänger eher als langfristiges Ziel sehen
+                und erstmal die Basics sauber aufbauen.
+            </p>
+
+            <h3>Welche Muskeln arbeiten dabei?</h3>
+            <ul>
+                <li><strong>Schultern & Arme:</strong> tragen und stabilisieren (z. B. Deltoids/Trapezius je nach Setup)</li>
+                <li><strong>Core:</strong> Bauch + tiefe Rumpfmuskeln halten die Linie stabil</li>
+                <li><strong>Oberer Rücken/Schultergürtel:</strong> Stabilität, um „nicht in die Schultern zu fallen“</li>
+            </ul>
+
+            <p class="small">
+                Safety first: Kopfstand ist fortgeschritten. Wenn du Nackenprobleme hast oder unsicher bist, lass dir das zeigen
+                oder starte mit vorbereitenden Übungen (z. B. Dolphin/Hund, Core-Spannung). Inhalte sind allgemeine Infos und ersetzen keine medizinische Beratung.
+            </p>
         </section>
 
         <section class="card">
@@ -44,13 +112,28 @@
     <footer class="footer">
         <div class="container">
             © <span data-year></span> KNowFit •
-            <!-- relative Links (funktionieren auch lokal besser) -->
             <a href="impressum.html">Impressum</a> •
             <a href="datenschutz.html">Datenschutz</a>
         </div>
     </footer>
 
-    <!-- JS: nur EINMAL, ganz unten -->
+    <!-- Speed-Control Script (nur für eigene/hochgeladene MP4-Videos) -->
+    <script>
+        const v = document.getElementById("yogaVideo");
+        const sel = document.getElementById("speedSelect");
+        const info = document.getElementById("speedInfo");
+
+        function setSpeed(val) {
+            const rate = parseFloat(val);
+            v.playbackRate = rate;
+            info.textContent = "Aktuell: " + rate + "x";
+        }
+
+        sel.addEventListener("change", (e) => setSpeed(e.target.value));
+        setSpeed(sel.value);
+    </script>
+
+    <!-- Site JS -->
     <script src="../js/main.js"></script>
 </body>
 </html>
